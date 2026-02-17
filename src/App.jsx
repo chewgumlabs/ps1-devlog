@@ -12,7 +12,7 @@ import { useThree } from "@react-three/fiber";
 
 
 function FrogWanderer({
-  url = "/models/chew6.glb",
+  url = `${import.meta.env.BASE_URL}models/chew6.glb`,
   scale = 1,
   idleSecondsMin = 2,
   idleSecondsMax = 4,
@@ -35,7 +35,7 @@ function FrogWanderer({
 
 
 
-const newTexture = useLoader(THREE.TextureLoader, "/textures/chew_padded.png");
+const newTexture = useLoader(THREE.TextureLoader, `${import.meta.env.BASE_URL}textures/chew_padded.png`);
 newTexture.flipY = false;                 
 newTexture.colorSpace = THREE.SRGBColorSpace;
 newTexture.magFilter = THREE.NearestFilter;
@@ -245,13 +245,14 @@ function Skybox() {
 
   useEffect(() => {
     const loader = new THREE.CubeTextureLoader();
+    const base = import.meta.env.BASE_URL;
     const texture = loader.load([
-      "/skybox/nx_left.jpg",
-      "/skybox/px_right.jpg",
-      "/skybox/py_top.jpg",
-      "/skybox/ny_bottom.jpg",
-      "/skybox/pz_front.jpg",
-      "/skybox/nz_back.jpg",
+      `${base}skybox/nx_left.jpg`,
+      `${base}skybox/px_right.jpg`,
+      `${base}skybox/py_top.jpg`,
+      `${base}skybox/ny_bottom.jpg`,
+      `${base}skybox/pz_front.jpg`,
+      `${base}skybox/nz_back.jpg`,
     ]);
 
     scene.background = texture;
@@ -286,7 +287,7 @@ export default function App() {
 
         {/* Chew */}
         <FrogWanderer
-          url="/models/chew6.glb"     
+          url={`${import.meta.env.BASE_URL}models/chew6.glb`}     
           scale={1}               
           roamRadius={12}
           walkSpeed={4}
